@@ -1,8 +1,9 @@
 
 node {
   stage('checkout sources') {
-        // You should change this to be the appropriate thing
-        git url: 'https://github.com/jschmersal-cscc/special-topics-labs-ci'
+        // To avoid needing to set up permissions to your private repo, leave this url set to the assignment repo.  
+        //For an extra challenge, try setting up the Jenkinsfile to pull from your repo instead
+        git url: 'https://github.com/ColumbusStateWorkforceInnovation/infrastructure-jenkins-part2.git'
   }
 
   stage('Build') {
