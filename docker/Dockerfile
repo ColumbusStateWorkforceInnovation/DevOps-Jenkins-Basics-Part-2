@@ -22,4 +22,7 @@ COPY --chown=jenkins:jenkins jobs/ ${JENKINS_HOME}/jobs/
 COPY --chown=jenkins:jenkins dsl/ ${JENKINS_HOME}/dsl
 
 # Download maven to a location inside the docker image, so we can add a maven Tool location within jenkins (in init.groovy.d)
-RUN curl -o ${JENKINS_HOME}/apache-maven-3.8.4-bin.tar.gz http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
+RUN curl -o ${JENKINS_HOME}/apache-maven-3.6.3-bin.tar.gz https://apache.osuosl.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+
+# Download Java to a location inside the docker image, so we can add a Java JDK Tool location within jenkins (in init.groovy.d)
+RUN curl -o ${JENKINS_HOME}/amazon-corretto-11.0.14.10.1-linux-x64.tar.gz https://corretto.aws/downloads/resources/11.0.14.10.1/amazon-corretto-11.0.14.10.1-linux-x64.tar.gz
