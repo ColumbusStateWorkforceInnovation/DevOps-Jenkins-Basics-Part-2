@@ -11,11 +11,11 @@ import jenkins.model.Jenkins;
 
 def extensions = Jenkins.instance.getExtensionList(Maven.DescriptorImpl.class)[0]
 List<MavenInstallation> installations = []
-mavenToool = ['name': 'maven3', 'url': 'file:/usr/share/jenkins/ref/apache-maven-3.6.3-bin.tar.gz', 'subdir': 'apache-maven-3.6.3']
-println("Setting up tool: ${mavenToool.name} ")
+mavenTool = ['name': 'maven3', 'url': 'file:/usr/share/jenkins/ref/apache-maven-3.6.3-bin.tar.gz', 'subdir': 'apache-maven-3.6.3']
+println("Setting up tool: ${mavenTool.name} ")
 def describableList = new DescribableList<ToolProperty<?>, ToolPropertyDescriptor>()
-def installer = new ZipExtractionInstaller(mavenToool.label as String, mavenToool.url as String, mavenToool.subdir as String);
+def installer = new ZipExtractionInstaller(mavenTool.label as String, mavenTool.url as String, mavenTool.subdir as String);
 describableList.add(new InstallSourceProperty([installer]))
-installations.add(new MavenInstallation(mavenToool.name as String, "", describableList))
+installations.add(new MavenInstallation(mavenTool.name as String, "", describableList))
 extensions.setInstallations(installations.toArray(new MavenInstallation[installations.size()]))
 extensions.save()

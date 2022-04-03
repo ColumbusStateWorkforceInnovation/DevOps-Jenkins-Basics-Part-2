@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts
+FROM jenkins/jenkins:latest-jdk11
 
 # This is the directory jenkins uses for most of its configuration
 ENV JENKINS_HOME=/usr/share/jenkins/ref
@@ -23,3 +23,6 @@ COPY --chown=jenkins:jenkins dsl/ ${JENKINS_HOME}/dsl
 
 # Download maven to a location inside the docker image, so we can add a maven Tool location within jenkins (in init.groovy.d)
 RUN curl -o ${JENKINS_HOME}/apache-maven-3.6.3-bin.tar.gz https://apache.osuosl.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+
+# Download Java to a location inside the docker image, so we can add a Java JDK Tool location within jenkins (in init.groovy.d)
+RUN curl -o ${JENKINS_HOME}/amazon-corretto-11.0.14.10.1-linux-x64.tar.gz https://corretto.aws/downloads/resources/11.0.14.10.1/amazon-corretto-11.0.14.10.1-linux-x64.tar.gz
