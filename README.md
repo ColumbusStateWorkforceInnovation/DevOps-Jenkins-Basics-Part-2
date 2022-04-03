@@ -38,19 +38,30 @@ The source code for this project is quite simple.  It's a simple Java applicatio
     1. Build the source code using a maven stage
         1. To use maven in a pipeline you need to have access to the `mvn` command, which is provided through a Tool Configuration in Jenkins.  See [the snippet](#maven-pipeline-build-snippet) below for a sample snippet.
     1. Report the unit test results.
-        1. See the [Jenkins tutorial](https://jenkins.io/doc/pipeline/tour/tests-and-artifacts/) on how to do this.  Note that the tutorial shows two versions of the pipeline syntax.  By default it shows the Declarative pipeline syntax (which uses `stages` and `post` syntax).  However we're using the scripted syntax.  There is a link to show the scripted syntax.  Use that syntax (i.e. no `stages` or `post` keywords).
+        1. See the [Jenkins tutorial](https://jenkins.io/doc/pipeline/tour/tests-and-artifacts/) on how to do this.  Note that the tutorial shows two versions of the pipeline syntax.  By default it shows the Declarative pipeline syntax (which uses `stages` and `post` syntax).  However, we're using the scripted syntax.  There is a link to show the scripted syntax.  Use that syntax (i.e. no `stages` or `post` keywords).
 1. To do so, you will need to:
     1. Change the [build_pipeline.groovy](docker/dsl/build_pipeline.groovy) to use your repository
     1. Modify your [Jenkinsfile](Jenkinsfile) appropriately. 
     1. To test your changes, you can rebuild the docker image running `./build-jenkins-image.sh` and then start your jenkins instance running `./run-jenkins.sh`.  Run your `build-pipeline-job` and verify it meets the requirements.
 
+### Before submitting your work:
+
+1. Go to the console output for your most recent successfully built job
+2. Right-click on "View as plain text"
+3. Choose "Save link as" and save the file as `consoleText.txt` in the root folder of this repo.
+4. Make sure to add `consoleText.txt` when you commit your work to your solution branch. 
+
 ## Hints
 1. We've created a [run-jenkins.sh](run-jenkins.sh) script that will start up jenkins for you if you'd like.  You can view your Jenkins by opening Firefox within your workspace to [http://localhost:8080](http://localhost:8080).
-1. If your repository is marked private, you might get an error when running your `build-pipeline` job.  To fix this, you can add your credentials in the Jenkins UI, or you can [add your credentials](https://jenkins.io/doc/book/using/using-credentials/#adding-new-global-credentials) and select them in the SCM section of the  [build-pipeline job configuration](http://localhost:8080/job/build-pipeline-job/configure).
-1. The [DSL API](https://jenkinsci.github.io/job-dsl-plugin/) is available online.
-1. There is a [Pipeline Syntax](http://localhost:8080/job/build-pipeline-job/pipeline-syntax/) page to help you out too!.
-1. Note the branch specification in [docker/dsl/build_pipeline.groovy](docker/dsl/build_pipeline.groovy).  You will likely not be working on the master branch.
-1. To test your changes locally before pushing them to GitHub, you can use the path to your repo as your git URLs in your [docker/dsl/build_pipeline.groovy](docker/dsl/build_pipeline.groovy) and [Jenkinsfile](Jenkinsfile).  So instead of saying:
+2. If your repository is marked private, you might get an error when running your `build-pipeline` job.  To fix this:
+   1. [Generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key). 
+   2. [Add the public (`.pub`) new SSH key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+   3. See [Using credentials](https://www.jenkins.io/doc/book/using/using-credentials/) in the Jenkins documentation for instructions on how to add your SSH key. 
+   4. Select your new credentials in the SCM section of the  [build-pipeline job configuration](http://localhost:8080/job/build-pipeline-job/configure).
+3. The [DSL API](https://jenkinsci.github.io/job-dsl-plugin/) is available online.
+4. There is a [Pipeline Syntax](http://localhost:8080/job/build-pipeline-job/pipeline-syntax/) page to help you out too!.
+5. Note the branch specification in [docker/dsl/build_pipeline.groovy](docker/dsl/build_pipeline.groovy).  You will likely not be working on the master branch.
+6. To test your changes locally before pushing them to GitHub, you can use the path to your repo as your git URLs in your [docker/dsl/build_pipeline.groovy](docker/dsl/build_pipeline.groovy) and [Jenkinsfile](Jenkinsfile).  So instead of saying:
 ```
    def repo = 'https://github.com/jschmersal-cscc/special-topics-labs-ci'
 ```
