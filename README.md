@@ -11,7 +11,7 @@ as code.  You will write pipeline jobs using the Groovy DSL and create those job
 
 ## Getting Started:
 
-1. Copy the starter code from here into a new, private repository in your personal GitHub account using the template button
+1. Copy the starter code from here into a new, private repository in your personal GitHub account. When adding a collaborator, be sure to add the instructor ("CSCC-Instructor").
 
 ## Understanding the Starter Code
 This repository contains all you need to have a fully dockerized Jenkins that supports a DSL seed job and 
